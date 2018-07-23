@@ -42,6 +42,6 @@ Documentación sobre NgRX [NGRX](https://github.com/ngrx).
 
 ## Redux
 
-Documentación sobre redux en ingles [redux.js.org](https://redux.js.org)
-Documentación sobre redux en español [es.redux.js.org](https://es.redux.js.org)
+- Documentación sobre redux en ingles [redux.js.org](https://redux.js.org)
+- Documentación sobre redux en español [es.redux.js.org](https://es.redux.js.org)
 
