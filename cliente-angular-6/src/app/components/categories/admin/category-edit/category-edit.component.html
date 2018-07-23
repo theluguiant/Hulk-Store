@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <app-title [Title]="title"></app-title>
+
+        <app-alertsdiv
+          [AlertClass]="'p-3 mb-2 bg-success text-white'"
+          [SubmitVal]="status"
+          [TextAlert]="msn_success"
+          [BeenToCompare]="'success'"
+        > </app-alertsdiv>
+        <app-alertsdiv
+            [AlertClass]="'p-3 mb-2 bg-danger text-white'"
+            [SubmitVal]="status"
+            [TextAlert]="msn_error"
+            [BeenToCompare]="'error'"
+        > </app-alertsdiv>
+        <div class="row" *ngIf=" show_form === false">
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-12">
+                <div class="form-group" *ngFor="let myinput of inputs">
+                    <app-labels
+                      [NameInput]="myinput.labelFor"
+                      [DisplayString]="myinput.labelText">
+                    </app-labels>
+                    <app-inputs
+                       [InputType]="myinput.inputType"
+                       [InputName]="myinput.name"
+                       [InputPlaceHolder]="myinput.placeholder"
+                       [(sharedVar)] = "model_controller[myinput.name]"
+                       [InputClass]="myinput.class">
+                    </app-inputs>
+                    <app-span-error [ErrorMsn]=errorRegister[myinput.name] [ErrorStatus]=status >
+                    </app-span-error>
+                </div>
+              <app-custom-button
+                 *ngIf="!cargando"
+                [ButtonClass]="'btn btn-raised btn-success'"
+                [TextButton]="'Actualizar'"
+                [SubmitVal]="status_submit"
+              >
+              </app-custom-button>
+              <app-custom-button 
+                 *ngIf="!cargando"
+                [routerLink]="['/all-admin-category']"
+                [ButtonClass]="'btn btn-raised btn-danger'"
+                [TextButton]="'Cancelar'"
+                [SubmitVal]="status_submit"
+              >
+              </app-custom-button>
+                <button *ngIf="cargando" [disabled]="true" class="btn btn-raised btn-success">
+                        <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                            Espere .....
+                </button>
+            </form>
+        </div>
+        <div class="row" *ngIf=" show_form === true">
+                <a [routerLink]="['/all-admin-category']" class="alert-link"> Volver </a>
+        </div>
+
+    </div>
+</div>
+

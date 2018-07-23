@@ -1,0 +1,209 @@
+<div class="container">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+
+        <div class="jumbotron">
+
+
+            <app-title [Title]="title"></app-title>
+
+            <app-alertsdiv
+              [AlertClass]="'p-3 mb-2 bg-success text-white'"
+              [SubmitVal]="status"
+              [TextAlert]="msn_success"
+              [BeenToCompare]="'success'"
+            > </app-alertsdiv>
+            <app-alertsdiv
+                [AlertClass]="'p-3 mb-2 bg-danger text-white'"
+                [SubmitVal]="status"
+                [TextAlert]="msn_error"
+                [BeenToCompare]="'error'"
+            > </app-alertsdiv>
+            <div class="row" *ngIf=" show_form === false">
+                <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-12">
+                    <div class="form-row">
+                      
+                        <div class="col-md-6 mb-3">
+                              <app-labels
+                                [NameInput]="'name'"
+                                [DisplayString]="'Nombre'">
+                              </app-labels>
+                              <app-inputs
+                                [InputType]="'text'"
+                                [InputName]="'name'"
+                                [InputMinlenght]="3"
+                                [InputMaxlenght]="50"
+                                [InputRequire]="true"
+                                [InputPlaceHolder]="'Ingrese el nombre del producto'"
+                                [(sharedVar)] = "model_controller.name"
+                                [InputClass]="'form-control'">
+                              </app-inputs>
+                              <app-span-error [ErrorMsn]="errorRegister.name" [ErrorStatus]="status" >
+                              </app-span-error>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                              <app-labels
+                                [NameInput]="'description'"
+                                [DisplayString]="'Descripcion'">
+                              </app-labels>
+                              <app-inputs
+                                [InputType]="'text'"
+                                [InputName]="'description'"
+                                [InputMinlenght]="20"
+                                [InputMaxlenght]="100"
+                                [InputRequire]="true"
+                                [InputPlaceHolder]="'Ingrese la descripcion'"
+                                [(sharedVar)] = "model_controller.description"
+                                [InputClass]="'form-control'">
+                              </app-inputs>
+                              <app-span-error [ErrorMsn]="errorRegister.description" [ErrorStatus]="status" >
+                              </app-span-error>
+                        </div>
+                  </div>
+                    <div class="form-row" style="margin-top:15px;">
+                      
+                        <div class="col-md-6 mb-3">
+                              <app-labels
+                                [NameInput]="'price'"
+                                [DisplayString]="'Precio'">
+                              </app-labels>
+                              <app-inputs
+                                [InputType]="'number'"
+                                [InputName]="'price'"
+                                [InputPlaceHolder]="'Ingrese el precio del producto'"
+                                [(sharedVar)] = "model_controller.price"
+                                [InputMin]="5000"
+                                [InputMax]="150000"
+                                [InputRequire]="true"
+                                [InputClass]="'form-control'">
+                              </app-inputs>
+                              <app-span-error [ErrorMsn]="errorRegister.price" [ErrorStatus]="status" >
+                              </app-span-error>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                              <app-labels
+                                [NameInput]="'discount'"
+                                [DisplayString]="'Descuento'">
+                              </app-labels>
+                              <app-inputs
+                                [InputType]="'number'"
+                                [InputName]="'discount'"
+                                [InputMin]="0"
+                                [InputMax]="100"
+                                [InputRequire]="true"
+                                [InputPlaceHolder]="'Ingrese el descuento 0 - 100'"
+                                [(sharedVar)] = "model_controller.discount"
+                                [InputClass]="'form-control'">
+                              </app-inputs>
+                              <app-span-error [ErrorMsn]="errorRegister.discount" [ErrorStatus]="status" >
+                              </app-span-error>
+                        </div>
+                  </div>
+
+                  <div class="form-row" style="margin-top:15px;">
+                      
+                        <div class="col-md-4 mb-3">
+                              <app-labels
+                                [NameInput]="'stock'"
+                                [DisplayString]="'Cantidad'">
+                              </app-labels>
+                              <app-inputs
+                                [InputType]="'number'"
+                                [InputName]="'stock'"
+                                [InputPlaceHolder]="'Ingrese el numero de producto 10 - 100000'"
+                                [(sharedVar)] = "model_controller.stock"
+                                [InputMin]="10"
+                                [InputMax]="100000"
+                                [InputRequire]="true"
+                                [InputClass]="'form-control'">
+                              </app-inputs>
+                              <app-span-error [ErrorMsn]="errorRegister.stock" [ErrorStatus]="status" >
+                              </app-span-error>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                              <app-labels
+                                [NameInput]="'size'"
+                                [DisplayString]="'Tamaño'">
+                              </app-labels>
+                              <app-inputs
+                                [InputType]="'text'"
+                                [InputName]="'size'"
+                                [InputMinlenght]="1"
+                                [InputMaxlenght]="50"
+                                [InputRequire]="true"
+                                [InputPlaceHolder]="'Ingrese el tamaño del producto'"
+                                [(sharedVar)] = "model_controller.size"
+                                [InputClass]="'form-control'">
+                              </app-inputs>
+                              <app-span-error [ErrorMsn]="errorRegister.size" [ErrorStatus]="status" >
+                              </app-span-error>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                              <app-labels
+                                [NameInput]="'code'"
+                                [DisplayString]="'Codigo'">
+                              </app-labels>
+                              <app-inputs
+                                [InputType]="'text'"
+                                [InputName]="'code'"
+                                [InputMinlenght]="5"
+                                [InputMaxlenght]="15"
+                                [InputRequire]="true"
+                                [InputPlaceHolder]="'Ingrese el codigo del producto'"
+                                [(sharedVar)] = "model_controller.code"
+                                [InputClass]="'form-control'">
+                              </app-inputs>
+                              <app-span-error [ErrorMsn]="errorRegister.code" [ErrorStatus]="status" >
+                              </app-span-error>
+                        </div>
+                  </div>
+                  <div class="form-row" style="margin-top:15px;">
+                        <div class="col">
+                          <label class="mr-sm-2" for="brand">Marca</label>
+                          <select class="custom-select my-1 mr-sm-2"  [(ngModel)]="model_controller.brand" id="brand" name="brand">
+                            <option value="Marvel">Marvel</option>
+                            <option value="Dc Comics">Dc Comics</option>
+                          </select>
+                          <app-span-error [ErrorMsn]="errorRegister.brand" [ErrorStatus]="status" >
+                          </app-span-error>
+                        </div>
+                        <div class="col">
+                          <label class="mr-sm-2" for="category_id">Categoria</label>
+                          <select class="custom-select my-1 mr-sm-2"  [(ngModel)]="model_controller.category_id" id="category_id" name="category_id">
+                            <option *ngFor="let c of allCategories" [ngValue]="c.internal_url">{{c.name}}</option>
+
+                          </select>
+                          <app-span-error [ErrorMsn]="errorRegister.category_id" [ErrorStatus]="status" >
+                          </app-span-error>
+                        </div>
+                  </div>
+                
+                  <app-custom-button
+                    *ngIf="!cargando"
+                    [ButtonClass]="'btn btn-raised btn-success'"
+                    [TextButton]="'Registrar'"
+                    [SubmitVal]="status_submit"
+                  >
+                  </app-custom-button>
+                  <app-custom-button 
+                    *ngIf="!cargando"
+                    [routerLink]="['/products-list-admin']"
+                    [ButtonClass]="'btn btn-raised btn-danger'"
+                    [TextButton]="'Cancelar'"
+                    [SubmitVal]="status_submit"
+                  >
+                  </app-custom-button>
+                    <button *ngIf="cargando" [disabled]="true" class="btn btn-raised btn-success">
+                            <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                                Espere .....
+                    </button>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

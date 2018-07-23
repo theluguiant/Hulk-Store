@@ -1,0 +1,64 @@
+
+    <div class="col-lg-12 col-md-12 col-xs-12">
+      <div class="jumbotron">
+          <h2>
+            {{title}}
+         </h2>
+          <app-custom-button
+            [routerLink]="['/add-admin-category']"
+            [ButtonClass]="'btn btn-info'"
+            [TextButton]="'Agregar'"
+            [SubmitVal]="true"  
+          ></app-custom-button>
+          <div class="table-responsive" *ngIf="!cargando">
+              <table class="table table-hover">
+                <thead> 
+                  <tr> 
+                    <th>Nombre</th> 
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Estado</th>
+                    <th></th>
+                  </tr> 
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of this.listUsers" >
+                    <td>
+                      {{ user.name}}
+                    </td>
+                    <td>
+                      {{ user.email | slice:0:60}}
+                    </td>
+                    <td>
+                      <span *ngIf="user.roles_id === 1">
+                          Admin
+                      </span>
+                      <span *ngIf="user.roles_id === 2">
+                          User
+                      </span>
+                    </td>
+                    <td>
+                      <span *ngIf="user.delete === 0">
+                          Inactivo
+                      </span>
+                      <span *ngIf="user.delete === 1">
+                          Activo
+                      </span>
+                    </td>
+                    <td>
+                      <span *ngIf="user.roles_id === 2">
+                        <button type="button" class="btn btn-danger" *ngIf="user.delete === 1" (click)="delete(user.internal_url)"  >Inactivar</button>
+                        <button type="button" class="btn btn-info" *ngIf="user.delete === 0" (click)="delete(user.internal_url)">Activar</button>
+                      </span>
+                     
+                    </td>
+                  </tr> 
+                </tbody>
+              </table>
+          </div>
+          <div class="p-3 mb-2 bg-success text-white text-center" role="alert" *ngIf="cargando">
+                  <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                            Cargando .....
+          </div>
+      </div>
+    </div>

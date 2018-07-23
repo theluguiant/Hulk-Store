@@ -1,0 +1,52 @@
+<header>
+      <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+    <a class="navbar-brand" [routerLink]="['']">Hulk Store</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto" *ngIf="identity === null">
+                <li  class="nav-item active" [routerLink]="['login']">
+                  <a class="nav-link" >Login <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item" [routerLink]="['register']" >
+                  <a class="nav-link" >Registro</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav mr-auto" *ngIf="identity !== null && identity.role !== null ">
+                 
+       
+                <li class="nav-item" *ngIf="identity.role ===2" [routerLink]="['/user-list-products']">
+                  <a class="nav-link">Productos</a> 
+                </li>
+
+                <li class="nav-item" [routerLink]="['/products-list-admin']"  *ngIf=" identity.role !== null && identity.role ===1" >
+                  <a class="nav-link">Productos</a> 
+                </li>
+                <li class="nav-item"   *ngIf="  identity.role !== null && identity.role ===1" [routerLink]="['/all-admin-category']" >
+                  <a class="nav-link">Categorias</a>
+                </li>
+                <li class="nav-item" [routerLink]="['/users-list']" *ngIf=" identity.role !== null && identity.role ===1" >
+                  <a class="nav-link">Usuarios</a>
+                </li>
+                <li  class="nav-item" [routerLink]="['logout',1]" *ngIf="identity !== null">
+                  <a  class="nav-link" >
+                    
+                    Salir
+                  </a>
+              </li>
+            </ul>
+          </div>
+      </div>
+     
+    </nav>
+</header>
+<div class="container" style="margin-top: 20px">
+  <div style="width: 100%">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

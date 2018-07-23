@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="col-lg-12 col-md-12 col-xs-12" style="margin-top:30px">
+
+      <div class="d-flex justify-content-center">
+        <app-alertsdiv
+          [AlertClass]="'p-3 mb-2 bg-success text-white'"
+          [SubmitVal]="status"
+          [TextAlert]="msn_success"
+          [BeenToCompare]="'success'"
+        > </app-alertsdiv>
+
+        <app-alertsdiv
+          [AlertClass]="'p-3 mb-2 bg-danger text-white'"
+          [SubmitVal]="status"
+          [TextAlert]="msn_error"
+          [BeenToCompare]="'error'"
+        > </app-alertsdiv>
+        
+      </div>
+    </div>    
+
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <div class="d-flex justify-content-center">
+
+             <div class="card" style="width: 18rem;">
+                  <div class="card-header">
+                    <app-title class="text-center" [Title]="title"></app-title>
+                  </div>
+                  <div class="card-body">
+                      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-12">
+
+                          <div class="form-group" *ngFor="let myinput of inputs">
+                            <app-labels
+                              [NameInput]="myinput.labelFor"
+                              [DisplayString]="myinput.labelText">
+                            </app-labels>
+                            <app-inputs
+                              [InputType]="myinput.inputType"
+                              [InputName]="myinput.name"
+                              [InputPlaceHolder]="myinput.placeholder"
+                              [(sharedVar)] = "login[myinput.name]"
+                              [InputClass]="myinput.class">
+                            </app-inputs>
+                            <app-span-error [ErrorMsn]=errorLogin[myinput.name] [ErrorStatus]=status >
+                            </app-span-error>
+                          </div>
+
+                          <app-custom-button
+                            [ButtonClass]="'btn btn-raised btn-success'"
+                            [TextButton]="'Login'"
+                            [SubmitVal]="status_submit"
+                          ></app-custom-button>
+                            <button *ngIf="cargando" [disabled]="true" class="btn btn-raised btn-success">
+                                      <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                                                          Espere .....
+                            </button>
+                      </form>
+                  </div>
+                </div>
+
+
+
+        </div>
+    </div>
+</div>
+

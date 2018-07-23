@@ -1,0 +1,14 @@
+<input type={{type}}
+     id={{name}}
+     placeholder={{placeholder}}
+     name={{name}}
+     [(ngModel)]="sharedVar"
+     class={{classInput}}
+     (ngModelChange)="change($event)"
+     #{{name}}="ngModel"
+      minlength="{{min_text}}"
+      maxlength="{{max_text}}"
+      min="{{min_number}}"
+      max="{{max_number}}"
+      required={{req}}
+     >
